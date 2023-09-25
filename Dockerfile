@@ -33,7 +33,7 @@ RUN echo "Building stage1 image";
 
 # Install necessary dependencies
 RUN apt-get install -y \
-    python3 python3-pip python-is-python3
+    python3
 
 # Define the entrypoint for the container
 ENTRYPOINT ["/app/entrypoint.sh"]
