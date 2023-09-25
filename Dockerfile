@@ -1,5 +1,6 @@
 # Use the official Ubuntu image as the base image
-FROM ubuntu:22.04
+FROM ubuntu:22.04 AS base
+RUN echo "Building base image"
 
 # Install necessary dependencies
 RUN apt-get update && \
@@ -26,6 +27,13 @@ COPY entrypoint.sh /app/entrypoint.sh
 
 # Make the entrypoint script executable
 RUN chmod +x /app/entrypoint.sh
+
+FROM base AS stage1
+RUN echo "Building stage1 image";
+
+# Install necessary dependencies
+RUN apt-get install -y \
+    python3 python3-pip python-is-python3
 
 # Define the entrypoint for the container
 ENTRYPOINT ["/app/entrypoint.sh"]
