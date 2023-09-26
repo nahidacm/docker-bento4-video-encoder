@@ -35,5 +35,8 @@ RUN echo "Building stage1 image";
 RUN apt-get install -y \
     python3
 
+FROM stage1 AS final
+RUN echo "Building final image";
+
 # Define the entrypoint for the container
 ENTRYPOINT ["/app/entrypoint.sh"]

@@ -10,6 +10,8 @@ docker build -t bento4-video-encoder-image .
 Copy video files and folder into the `input` directory
 
 Output files will be available on respected subfolder of `output` directory.
+
+To have different input and output directory mount the volume in docker directory accordingly
  
 #### Run the container to encode video
 ```bash
@@ -17,5 +19,7 @@ docker run -v ./output:/app/output -v ./input:/app/input bento4-video-encoder-im
 
 # Example
 docker run -v ./output:/app/output -v ./input:/app/input bento4-video-encoder-image sample/video1.mp4 sample/video2.mp4
+# Or
+docker run -v ./output:/app/output -v ./input:/app/input bento4-video-encoder-image sample/jumping-12mb.mp4
 ```
 

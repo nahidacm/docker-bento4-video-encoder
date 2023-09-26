@@ -41,6 +41,8 @@ for input_video_file in "$@"; do
     fi
 done
 
+chmod -R 777 ./output
+
 echo "All conversions are complete."
 
 # Keep the container running
