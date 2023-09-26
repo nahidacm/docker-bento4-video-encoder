@@ -4,6 +4,8 @@
 #### Building docker image
 ```bash
 docker build -t bento4-video-encoder-image .
+## Or
+docker build -t bento4-video-encoder-image --target final . 
 ```
 
 #### Usage instruction

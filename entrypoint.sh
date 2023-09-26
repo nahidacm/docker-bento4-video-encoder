@@ -17,7 +17,8 @@ for input_video_file in "$@"; do
     if ./bento4/bin/mp4info ./input/"$input_video_file" | grep -q "fragments:  yes"; then
 
         echo "Input video is already fragmented. Now encoding..."
-        ./bento4/bin/mp4dash -v -d "./input/$input_video_file" -o ./output/"$foldername-$timestamp"
+        # ./bento4/bin/mp4dash -v -d "./input/$input_video_file" -o ./output/"$foldername-$timestamp"
+        ./bento4/bin/mp4dash -v -d "./input/$input_video_file" -o ./output/"$foldername"
 
         if [ $? -eq 0 ]; then
             echo "Conversion complete for $input_video_file"
@@ -33,7 +34,8 @@ for input_video_file in "$@"; do
         # Check if mp4fragment was successful
         if [ $? -eq 0 ]; then
             echo "Video successfully fragmented. Now encoding..."
-            ./bento4/bin/mp4dash -v -d ./input/"$fragmented_video" -o ./output/"$foldername-$timestamp"
+            # ./bento4/bin/mp4dash -v -d ./input/"$fragmented_video" -o ./output/"$foldername-$timestamp"
+            ./bento4/bin/mp4dash -v -d ./input/"$fragmented_video" -o ./output/"$foldername"
         else
             echo "Error: Failed to fragment the video."
             exit 1
