@@ -33,8 +33,8 @@ FROM stage1 AS stage2
 RUN echo "Building stage2 image";
 RUN apt-get install -y ffmpeg
 
-FROM stage2 AS final
-# FROM bento4-video-encoder-stage2 AS final
+# FROM stage2 AS final
+FROM bento4-video-encoder-stage2 AS final
 RUN echo "Building final image";
 
 # Copy the entrypoint script into the container (create it as described below)
