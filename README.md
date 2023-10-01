@@ -23,5 +23,7 @@ docker run -v ./output:/app/output -v ./input:/app/input bento4-video-encoder-im
 docker run -v ./output:/app/output -v ./input:/app/input bento4-video-encoder-image sample/video1.mp4 sample/video2.mp4
 # Or
 docker run -v ./output:/app/output -v ./input:/app/input bento4-video-encoder-image sample/jumping-12mb.mp4
+#Or
+docker run -v /home/nahid/dev-dir/practice/laravel-video-streaming/storage/app/private/dash:/app/output -v ./input:/app/input bento4-video-encoder-image jumping-12mb.mp4
 ```
 

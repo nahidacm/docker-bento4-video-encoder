@@ -22,12 +22,6 @@ RUN chmod +x /app/bento4/bin/mp4info && \
 # Create a directory to store the output MP4-DASH files
 RUN mkdir -p /app/output
 
-# Copy the entrypoint script into the container (create it as described below)
-COPY entrypoint.sh /app/entrypoint.sh
-
-# Make the entrypoint script executable
-RUN chmod +x /app/entrypoint.sh
-
 FROM base AS stage1
 RUN echo "Building stage1 image";
 
@@ -35,8 +29,19 @@ RUN echo "Building stage1 image";
 RUN apt-get install -y \
     python3
 
-FROM stage1 AS final
+FROM stage1 AS stage2
+RUN echo "Building stage2 image";
+RUN apt-get install -y ffmpeg
+
+FROM stage2 AS final
+# FROM bento4-video-encoder-stage2 AS final
 RUN echo "Building final image";
+
+# Copy the entrypoint script into the container (create it as described below)
+COPY entrypoint.sh /app/entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /app/entrypoint.sh
 
 # Define the entrypoint for the container
 ENTRYPOINT ["/app/entrypoint.sh"]
